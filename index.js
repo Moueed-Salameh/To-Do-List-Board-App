@@ -17,10 +17,6 @@ const db = new pg.Client({
 });
 db.connect();
 
-let items = [
-  { id: 1, title: "Today"},
-];
-
 async function getLists() {
   try {
     const result = await db.query("SELECT * FROM lists ORDER BY id ASC");
@@ -61,6 +57,27 @@ app.post("/add", async (req, res) => {
   res.redirect("/");
 });
 
+app.post("/edit", async (req, res) => {
+  const listToUpdateId = req.body.updatedListId;
+  const newTitle = req.body.updatedListTitle;
+  try {
+    await db.query("UPDATE lists SET title = $1 WHERE id = $2", [newTitle, listToUpdateId])
+  } catch (err) {
+    console.log(err);
+  }
+  res.redirect("/");
+});
+
+app.post("/delete", async (req, res) => {
+  const listToDeleteId = req.body.deleteListId;
+  try {
+    await db.query("DELETE FROM lists WHERE id = $1", [listToDeleteId])
+  } catch (err) {
+    console.log(err);
+  }
+  res.redirect("/");
+});
+
 app.post("/add/item", async (req, res) => {
   const item = req.body.newItem;
   const list = req.body.list;
@@ -72,7 +89,7 @@ app.post("/add/item", async (req, res) => {
   res.redirect("/");
 });
 
-app.post("/edit", async (req, res) => {
+app.post("/edit/item", async (req, res) => {
   const itemToUpdateId = req.body.updatedItemId;
   const newTitle = req.body.updatedItemTitle;
   try {
@@ -83,7 +100,7 @@ app.post("/edit", async (req, res) => {
   res.redirect("/");
 });
 
-app.post("/delete", async (req, res) => {
+app.post("/delete/item", async (req, res) => {
   const itemToDeleteId = req.body.deleteItemId;
   try {
     await db.query("DELETE FROM items WHERE id = $1", [itemToDeleteId])

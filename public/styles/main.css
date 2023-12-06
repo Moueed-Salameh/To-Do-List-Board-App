@@ -1,36 +1,73 @@
+:root {
+  --pink: #FF90BC;
+  --light-pink: #FFC0D9;
+  --light-pink-transparent: #ffc0d98f;
+  --flesh-beige: #F9F9E0;
+  --flesh-beige-transparent: #f9f9e0ab;
+  --teal-blue: #8ACDD7;
+  --teal-blue-dark: #042b31;
+  --teal-blue-transparet: #8ACDD78f;
+}
+
 html {
-  background-color: #e4e9fd;
-  background-image: -webkit-linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%);
-  min-height: 1000px;
-  font-family: "helvetica neue";
+  background-color: var(--light-pink);
+  background-image: -webkit-linear-gradient(65deg, var(--light-pink) 50%, var(--teal-blue) 50%);
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  font-weight: 400;
 }
+
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  min-height: 95vh;
+  padding: 20px;
+  min-height: 100%;
+  margin: 0;
 }
+
 main {
   text-align: center;
-  flex: 1 0 auto;
 }
+
+.list-wrapper {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: 80vh;
+}
+
+div.list {
+  flex: 1;
+}
+
+.box.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 h1 {
-  color: #fff;
-  padding: 10px;
+  color: var(--flesh-beige);
+  font-weight: 700;
+  font-size: 24pt;
 }
 
+.list-form,
 .box {
-  max-width: 400px;
+  max-width: 500px;
+  min-width: 400px;
   margin: 50px auto;
-  background: white;
+  background: var(--flesh-beige);
   border-radius: 5px;
-  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.5);
 }
 
-#heading {
-  background-color: #a683e3;
+.list-form,
+.box.heading {
+  background-color: var(--pink);
   text-align: center;
 }
+
 form.edit {
   display: flex;
 }
@@ -39,7 +76,7 @@ form.edit {
   min-height: 70px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid var(--teal-blue-transparet);
 }
 
 .item:last-child {
@@ -55,7 +92,7 @@ p {
   margin: 0;
   padding: 20px 0;
   font-size: 20px;
-  color: #00204a;
+  color: var(--teal-blue-dark);
 }
 
 form {
@@ -68,10 +105,15 @@ button.add {
   width: 50px;
   border-radius: 50%;
   border-color: transparent;
-  background-color: #a683e3;
-  color: #fff;
+  background-color: var(--pink);
+  color: var(--flesh-beige);
   font-size: 30px;
   border-width: 0;
+}
+
+.list-form>button.add {
+  margin-top: 10px;
+  background-color: var(--teal-blue);
 }
 
 button.edit {
@@ -88,26 +130,41 @@ button.edit {
 input[type="text"] {
   text-align: left;
   height: 60px;
-  top: 10px;
+  margin-bottom: 10px;
   border: none;
   background: transparent;
   font-size: 20px;
-  font-weight: 200;
+  font-weight: 400;
   width: 80%;
+}
+
+.list-form>::placeholder,
+.list-form>input[type="text"] {
+  height: 40px;
+  font-size: 24pt;
+  color: var(--flesh-beige-transparent);
+  font-weight: 700;
+  font-size: 24pt;
 }
 
 input[type="text"]:focus {
   outline: none;
-  box-shadow: inset 0 -3px 0 0 #a683e3;
+  box-shadow: inset 0 -3px 0 0 var(--teal-blue);
 }
 
 ::placeholder {
   color: lightgray;
+  font-weight: 400;
   opacity: 1;
 }
 
+div.heading > form.edit > input[type="text"] {
+  color: var(--flesh-beige);
+  font-size: 24pt;
+}
+
 footer {
-  flex: 0 0 auto;
-  color: white;
+  margin-top: 100px;
+  color: var(--flesh-beige);
   text-align: center;
 }
